@@ -127,14 +127,3 @@ accent = T.ACCENT     # 强调色
 ## 📄 许可证
 
 本项目采用 [Apache License 2.0](LICENSE) 开源许可证。
-
-Copyright 2026 吴炫辉
-
----
-
-## 👤 作者
-
-**吴炫辉** — 广东工贸职业技术学院 · 计算机网络技术专业
-
-- GitHub: [@wxh866](https://github.com/wxh866)
-- 项目仓库: [github.com/wxh866/-](https://github.com/wxh866/-)
