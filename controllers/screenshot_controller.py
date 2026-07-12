@@ -146,7 +146,10 @@ class ScreenshotController(QObject):
             self._virtual_origin = (virt.x, virt.y)
             logger.info("[Controller] 虚拟屏幕几何: %s", virt)
 
-            # 截取全部屏幕并合成为覆盖层背景（保证多屏下背景完整）
+            # 截取全部屏幕并合成为覆盖层背景（保证多屏下背景完整）。
+            # grabWindow 返回的是设备像素，而覆盖层窗口尺寸是逻辑像素，因此
+            # 需要按 devicePixelRatio 缩放到逻辑尺寸再拼贴，否则 HiDPI 下背景会
+            # 只显示左上角或出现错位。
             logger.info("[Controller] 合成全屏背景...")
             from PIL import Image
             bg = Image.new("RGBA", (virt.width, virt.height), (0, 0, 0, 255))
@@ -154,18 +157,26 @@ class ScreenshotController(QObject):
                 pm = s.grabWindow(0)
                 if pm.isNull():
                     continue
-                im = pixmapToPil(pm)  # 现保留 alpha
+                im = pixmapToPil(pm)  # 设备像素
+                # 缩放到逻辑尺寸，和覆盖层坐标系 1:1 对应
+                logical_size = (g.width, g.height)
+                if im.size != logical_size:
+                    im = im.resize(logical_size, Image.LANCZOS)
                 bg.paste(im, (g.x - virt.x, g.y - virt.y))
             bg_path = self._saveTempImage(bg)
             logger.info("[Controller] 背景已保存: %s", bg_path)
 
             # 创建透明全屏窗口（铺满虚拟屏幕并集）
+            # 关键：必须使用 Qt.Window 而非 Qt.Tool；工具窗口会被 Windows
+            # 限制在当前显示器，导致多屏/全屏下无法选择其他区域。
+            # 参考 Flameshot/ShareX：无边框顶层普通窗口 + 强制虚拟桌面几何。
             logger.info("[Controller] 创建 QQuickView 覆盖层...")
             self._overlay_window = QQuickView()
             self._overlay_window.setFlags(
+                Qt.Window |
                 Qt.FramelessWindowHint |
                 Qt.WindowStaysOnTopHint |
-                Qt.Tool
+                Qt.NoDropShadowWindowHint
             )
             self._overlay_window.setColor(Qt.transparent)
             self._overlay_window.setResizeMode(QQuickView.SizeRootObjectToView)
@@ -190,6 +201,11 @@ class ScreenshotController(QObject):
 
             logger.info("[Controller] 显示覆盖层")
             self._overlay_window.show()
+            # Windows 在 show() 时可能自动把窗口调整到单屏，因此在显示后
+            # 再用多种方式强制一次虚拟桌面几何，确保铺满全部屏幕。
+            self._overlay_window.setGeometry(virt.x, virt.y, virt.width, virt.height)
+            self._overlay_window.setPosition(virt.x, virt.y)
+            self._overlay_window.setSize(virt.width, virt.height)
             logger.info("[Controller] 覆盖层显示完成")
         finally:
             self._showing_overlay = False
