@@ -1,0 +1,78 @@
+{
+  "name": "dark",
+  "display_name": "深色 (Dark)",
+  "version": "1.0",
+
+  "background": {
+    "canvas": "#0f0f1a",
+    "app": "#141422",
+    "card": "#1e1e32",
+    "elevated": "#282844",
+    "hover": "#333358",
+    "input": "#181828"
+  },
+
+  "text": {
+    "primary": "#f0f0f8",
+    "secondary": "#b0b0c8",
+    "tertiary": "#707088",
+    "muted": "#505068"
+  },
+
+  "border": {
+    "default": "#2a2a44",
+    "strong": "#3a3a58"
+  },
+
+  "accent": {
+    "primary": "#4a8cff",
+    "light": "#5c9cff",
+    "background": "#1a2848"
+  },
+
+  "semantic": {
+    "success": "#4caf84",
+    "warning": "#e09050",
+    "error": "#e05555",
+    "error_light": "#f06060",
+    "info": "#4a8cff"
+  },
+
+  "special": {
+    "canvas_bg": "#10101c",
+    "selector": "#4a8cff",
+    "mask_dark": "rgba(0,0,0,0.45)"
+  },
+
+  "effects": {
+    "shadow": "0 8px 32px rgba(0,0,0,0.4)",
+    "focus_ring": "0 0 0 3px rgba(74,140,255,0.18)",
+    "sel_fill": "rgba(74,140,255,0.06)"
+  },
+
+  "annotation_colors": [
+    "#FF3B30", "#FF6B35", "#FF9500", "#FFCC02",
+    "#34C759", "#30B0C7", "#007AFF", "#5856D6",
+    "#AF52DE", "#FF2D55", "#8E8E93", "#FFFFFF"
+  ],
+
+  "watermark_palette": [
+    "#FFFFFF", "#CCCCCC", "#999999",
+    "#666666", "#333333", "#000000",
+    "#FF3B30", "#FF6B35", "#FF9500", "#FFCC02",
+    "#34C759", "#30B0C7", "#007AFF", "#5856D6",
+    "#AF52DE", "#FF2D55"
+  ],
+
+  "fonts": {
+    "primary": "Microsoft YaHei",
+    "mono": "Consolas"
+  },
+
+  "dimensions": {
+    "border_radius": 4,
+    "button_height": 36,
+    "toolbar_height": 48,
+    "toolbar_icon_size": 24
+  }
+}

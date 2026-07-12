@@ -1,0 +1,18 @@
+{
+  "theme": "dark",
+  "language": "zh_CN",
+  "save_path": "C:\\Users\\吴\\Pictures\\Screenshots",
+  "file_format": "PNG",
+  "auto_copy": true,
+  "capture_mode": "fullscreen",
+  "toolbar_docked": false,
+  "max_history": 50,
+  "watermark": {
+    "default_text": "机密文件",
+    "default_opacity": 25,
+    "default_size": 52,
+    "default_rotation": 28,
+    "default_color": "#888888"
+  },
+  "test_int": null
+}

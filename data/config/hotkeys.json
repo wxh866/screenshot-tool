@@ -1,0 +1,12 @@
+{
+  "capture_fullscreen": "Ctrl+Shift+F",
+  "capture_region": "Ctrl+Shift+R",
+  "capture_window": "Ctrl+Shift+W",
+  "capture_scrolling": "Ctrl+Shift+S",
+  "undo": "Ctrl+Z",
+  "redo": "Ctrl+Y",
+  "save": "Ctrl+S",
+  "copy": "Ctrl+C",
+  "escape": "Esc",
+  "delete_all": "Delete"
+}
