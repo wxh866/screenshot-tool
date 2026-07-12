@@ -1,10 +1,49 @@
+# ========== 构建产物 ==========
+build/
+dist/
+*.spec.bak
+
+# ========== 环境变量 / 密钥（绝不提交） ==========
+.env
+.env.*
+*.env
+
+# ========== Python 缓存 ==========
 __pycache__/
 *.pyc
 *.pyo
-.codebuddy/
-.workbuddy/
-*.bak
-dist/
-node_modules/
-.env
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ========== 虚拟环境 ==========
+venv/
+env/
+.venv/
+
+# ========== IDE ==========
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ========== 临时文件 ==========
 *.log
+*.tmp
+temp/
+
+# ========== 运行时数据（运行时生成，不提交） ==========
+logs/
+output/
+screenshots/
+# data/ 运行时可能生成用户数据，但保留默认配置源
+data/*
+!data/config/
+!data/config/*
+
+# ========== 本地代理/助手工作区（不提交） ==========
+.workbuddy/
+
+# ========== 截图输出 ==========
+*.png.bak
