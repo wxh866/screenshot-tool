@@ -1,70 +1,90 @@
-# 截图工具 (ScreenshotTool)
+# 📸 截图工具 (ScreenshotTool)
 
-一个基于 **PySide6 + QML** 的离线截图与标注桌面工具，支持全屏 / 区域 / 窗口 / 滚动截图，以及矩形、椭圆、箭头、文字、马赛克、水印、智能选区等 12 种标注工具，内置撤销/重做、历史记录、主题切换与一键导出/复制到剪贴板。
+> 轻量、离线、功能齐全的 Windows 截图 & 标注工具 —— 下载即用，无需安装。
 
-## 特性
+## 立即下载
 
-- **多种截图模式**：全屏、自定义区域、窗口、长图滚动拼接
-- **12 种标注工具**：画笔、直线、矩形、椭圆、箭头、文字、马赛克、高亮、橡皮擦、水印、智能选区、多边形
-- **编辑能力**：撤销 / 重做（Command 模式）、历史记录回放
-- **导出与分享**：PNG / JPG / BMP / PDF 导出，直接复制到系统剪贴板（保留透明通道）
-- **主题系统**：深色 / 浅色双主题，内置 WCAG 对比度校验
-- **快捷键**：全局热键截图（Windows 原生注册）
-- **离线优先**：纯本地运行，无网络依赖
+👉 **[点击下载 ScreenshotTool.exe](https://github.com/wxh866/screenshot-tool/releases/latest)**
 
-## 技术栈
+下载后双击 `ScreenshotTool.exe` 即可使用，无需安装 Python 或任何依赖。
 
-| 层 | 技术 |
-| --- | --- |
-| GUI | PySide6 (Qt Quick / QML, MVVM) |
-| 图像处理 | Pillow, OpenCV (headless) |
-| 事件 | Qt 信号槽 + 事件总线 (EventBus) |
-| 配置 | JSON 文件 |
-| 打包 | PyInstaller (onefile) |
+> 文件约 120MB（包含完整运行环境），首次启动可能需要几秒。
 
-## 目录结构
+---
+
+## 能做什么
+
+### 截图模式
+
+| 模式 | 说明 |
+|------|------|
+| 🖥 全屏截图 | 一键截取整个屏幕 |
+| ✂️ 区域截图 | 拖拽选取任意区域 |
+| 🪟 窗口截图 | 自动识别并截取窗口 |
+| 📜 滚动截图 | 长网页 / 长文档滚动拼接 |
+
+### 标注工具（12 种）
+
+画笔 · 直线 · 矩形 · 椭圆 · 箭头 · **文字** · **马赛克** · 高亮 · 橡皮擦 · **水印** · 智能选区 · 多边形
+
+### 编辑操作
+
+- ↩️ **撤销 / 重做** — 无限步，不怕手滑
+- 📋 **历史记录** — 随时回放到任意步骤
+- 🖼 **导出格式** — PNG / JPG / BMP / PDF
+- 📋 **复制到剪贴板** — 一键粘贴到微信/QQ/文档
+
+### 其他亮点
+
+- 🌓 **深色 / 浅色主题** — 白天夜晚都舒适
+- ⌨️ **全局快捷键** — 一键唤醒截图
+- 🔒 **离线运行** — 不联网，不传数据
+- ⚖️ **MIT 开源** — 免费使用，源码可见
+
+---
+
+## 用法一览
 
 ```
-ScreenshotTool/
-├── main.py                 # 应用主入口
-├── requirements.txt        # Python 依赖
-├── ScreenshotTool.spec     # PyInstaller 打包配置
-├── controllers/            # 控制器（截图/编辑器/历史）
-├── core/                   # 核心服务（截图/标注/配置/事件/撤销/历史）
-├── engines/                # 引擎层
-│   ├── annotation/         # 12 种标注工具实现
-│   ├── capture/            # 截图引擎（全屏/区域/窗口/滚动）
-│   └── export/             # 导出引擎（PNG/JPG/BMP/PDF）
-├── models/                 # 数据模型
-├── platforms/              # 平台相关（Windows 热键/Win32）
-├── themes/                 # 主题 JSON + 主题管理 + WCAG 校验
-├── utils/                  # 通用工具（日志/剪贴板/几何换算…）
-├── views/                  # QML 视图（主界面/区域遮罩/编辑器/历史）
-├── data/config/            # 默认配置源（app_config.json, hotkeys.json）
-├── tests/                  # 单元测试套件
-├── docs/                   # 设计/审查/测试/修复报告
-└── .github/workflows/      # CI（pytest）
+默认快捷键:
+  Ctrl+Shift+X  →  区域截图（最常用）
+  Ctrl+Shift+C  →  全屏截图
+  Ctrl+Shift+W  →  窗口截图
+  
+截图后编辑:
+  鼠标点击拖拽  →  绘制标注
+  Ctrl+Z       →  撤销
+  Ctrl+Shift+Z →  重做
+  Ctrl+S       →  保存到文件
+  Ctrl+C       →  复制到剪贴板
+  Esc          →  退出编辑器
 ```
 
-## 安装与运行
+---
+
+## 系统要求
+
+- Windows 10 / 11（64 位）
+- 无需额外安装任何软件
+
+---
+
+## 开发者
+
+<details>
+<summary>从源码运行</summary>
 
 ```bash
-# 1. 安装依赖（建议虚拟环境）
 pip install -r requirements.txt
-
-# 2. 开发模式运行
 python main.py
-
-# 3. 运行测试
-python run_tests.py
 ```
 
-## 打包
+**技术栈**: PySide6 + QML · Pillow · OpenCV · PyInstaller
 
-```bash
-pyinstaller ScreenshotTool.spec
-# 产物：dist/ScreenshotTool.exe
-```
+**目录结构**: `core/` 核心 · `controllers/` 控制器 · `engines/` 引擎 · `models/` 模型 · `views/` QML 视图
+</details>
+
+---
 
 ## 许可证
 
